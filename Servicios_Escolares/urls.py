@@ -2,12 +2,17 @@ from django.contrib import admin
 from django.urls import path
 from Servicios_Escolares.escolares.views import *
 from django.contrib.auth import views as auth_views
+from .views import register
+
 
 urlpatterns = [
 
-    # LOGIN
+     # Login / Logout
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    # Registro
+    path('register/', views.register, name='register'),
 
     # INICIO
     path('', ListarAlumnos.as_view(

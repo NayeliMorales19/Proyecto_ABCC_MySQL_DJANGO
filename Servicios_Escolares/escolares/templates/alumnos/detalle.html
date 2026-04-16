@@ -75,37 +75,37 @@ font-weight:600;
 
 <div class="col-md-4">
 <label class="info-label">Número de Control</label>
-<div class="info-box">{{ object.numControl }}</div>
+<div class="info-box">{{ alumno.numControl }}</div>
 </div>
 
 <div class="col-md-4">
 <label class="info-label">Nombre</label>
-<div class="info-box">{{ object.Nombre }}</div>
+<div class="info-box">{{ alumno.Nombre }}</div>
 </div>
 
 <div class="col-md-4">
 <label class="info-label">Primer Apellido</label>
-<div class="info-box">{{ object.primerAp }}</div>
+<div class="info-box">{{ alumno.primerAp }}</div>
 </div>
 
 <div class="col-md-4">
 <label class="info-label">Segundo Apellido</label>
-<div class="info-box">{{ object.segundoAp }}</div>
+<div class="info-box">{{ alumno.segundoAp }}</div>
 </div>
 
 <div class="col-md-4">
 <label class="info-label">Fecha de Nacimiento</label>
-<div class="info-box">{{ object.fechaNac }}</div>
+<div class="info-box">{{ alumno.fechaNac|date:"d/m/Y" }}</div>
 </div>
 
 <div class="col-md-2">
 <label class="info-label">Semestre</label>
-<div class="info-box">{{ object.semestre }}</div>
+<div class="info-box">{{ alumno.semestre }}</div>
 </div>
 
 <div class="col-md-6">
 <label class="info-label">Carrera</label>
-<div class="info-box">{{ object.carrera }}</div>
+<div class="info-box">{{ alumno.carrera }}</div>
 </div>
 
 </div>
@@ -115,7 +115,7 @@ font-weight:600;
 <i class="bi bi-arrow-left-circle"></i> Regresar
 </a>
 
-<a href="{% url 'editar' object.pk %}" class="btn btn-warning">
+<a href="{% url 'editar' alumno.pk %}" class="btn btn-warning">
 <i class="bi bi-pencil"></i> Editar
 </a>
 </div>
