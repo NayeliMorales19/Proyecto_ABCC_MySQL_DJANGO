@@ -1,51 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+<meta charset="UTF-8">
+<title>Login - Sistema de Alumnos</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
 
-    <style>
-        body{
-            background: linear-gradient(135deg,#4e73df,#1cc88a);
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
+<style>
+body{
+    background: linear-gradient(135deg,#4e73df,#1cc88a);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        .card{
-            padding:30px;
-            border-radius:15px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.2);
-            width:350px;
-        }
-    </style>
+.card{
+    width:380px;
+    border:none;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    padding:35px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform: translateY(20px);}
+    to{opacity:1; transform: translateY(0);}
+}
+
+.titulo{
+    font-weight:700;
+    color:#4e73df;
+}
+
+.form-control{
+    border-radius:10px;
+    height:45px;
+}
+
+.btn{
+    border-radius:10px;
+    font-weight:600;
+}
+
+.icon{
+    font-size:50px;
+    color:#4e73df;
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="card">
+<div class="card text-center">
 
-    <h3 class="text-center mb-3">Iniciar Sesión</h3>
+    <div class="mb-3">
+        <i class="bi bi-mortarboard-fill icon"></i>
+    </div>
+
+    <h3 class="titulo mb-3">Sistema de Alumnos</h3>
+    <p class="text-muted mb-4">Inicia sesión para continuar</p>
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <div class="mb-3 text-start">
+            <label class="form-label">Usuario</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label class="form-label">Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
 
         <button type="submit" class="btn btn-primary w-100">
-            Entrar
+            <i class="bi bi-box-arrow-in-right"></i> Entrar
         </button>
     </form>
 
     <hr>
 
-    <p class="text-center">
-        ¿No tienes cuenta?<br>
-        <a href="{% url 'register' %}" class="btn btn-success btn-sm mt-2">
-            Registrarse
-        </a>
-    </p>
+    <p class="mb-1">¿No tienes cuenta?</p>
+    <a href="{% url 'register' %}" class="btn btn-success btn-sm">
+        Crear cuenta
+    </a>
 
 </div>
 
