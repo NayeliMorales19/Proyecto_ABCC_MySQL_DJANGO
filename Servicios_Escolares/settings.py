@@ -94,9 +94,12 @@ WSGI_APPLICATION = 'Servicios_Escolares.wsgi.application'
 #}
 
  
+import os
+import dj_database_url
+
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get("postgresql://postgres.xwisgtqcqbsucyrykhhm:TU_PASSWORD@aws-1-us-west-2.pooler.supabase.com:6543/postgres")
+        os.environ.get("DATABASE_URL")
     )
 }
 
