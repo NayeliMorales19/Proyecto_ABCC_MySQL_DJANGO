@@ -1,0 +1,1 @@
+web: gunicorn Proyecto_ABCC_MySQL.wsgi
