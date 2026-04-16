@@ -35,14 +35,17 @@ class CrearAlumno(LoginRequiredMixin, CreateView):
 
 
 # 🔹 EDITAR
-class ActualizarAlumno(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+from django.contrib import messages
+
+class ActualizarAlumno(LoginRequiredMixin, UpdateView):
     model = Alumno
     fields = "__all__"
     template_name = "alumnos/editar.html"
-    success_message = "Alumno MODIFICADO con EXITO!!"
 
-    def get_success_url(self):
-        return reverse('listar')
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Alumno modificado correctamente")
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 # 🔹 ELIMINAR
