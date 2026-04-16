@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-5=*i!7jw2%5tv#jt5b%ip!uet#^o!1gh9fni==hj+fjy39av!7
 DEBUG = True
 
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'Servicios_Escolares.escolares',
     'django_bootstrap5',
     'widget_tweaks',
+    
    
 ]
 

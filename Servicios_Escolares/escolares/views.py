@@ -21,14 +21,17 @@ class DetalleAlumno(LoginRequiredMixin, DetailView):
 
 
 # 🔹 CREAR
-class CrearAlumno(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+from django.contrib import messages
+
+class CrearAlumno(LoginRequiredMixin, CreateView):
     model = Alumno
     fields = "__all__"
     template_name = "alumnos/crear.html"
-    success_message = "Alumno AGREGADO con EXITO!!"
 
-    def get_success_url(self):
-        return reverse('listar')
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Alumno agregado correctamente")
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 # 🔹 EDITAR
