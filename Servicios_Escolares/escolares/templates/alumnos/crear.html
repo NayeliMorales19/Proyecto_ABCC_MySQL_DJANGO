@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Alumno</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+
+<style>
+body{
+background: linear-gradient(135deg,#4e73df,#1cc88a);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+.navbar{
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card-box{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+margin:auto;
+margin-top:40px;
+width:850px;
+}
+
+.titulo{
+font-weight:700;
+}
+
+.form-label{
+font-weight:600;
+color:#555;
+}
+
+.form-control, .form-select{
+border-radius:10px !important;
+height:45px;
+}
+
+.input-group-text{
+background:#4e73df;
+color:white;
+border:none;
+}
+
+button{
+border-radius:10px !important;
+font-weight:600;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="{% url 'inicio' %}">
+<i class="bi bi-mortarboard-fill"></i>
+Sistema de Alumnos
+</a>
+</div>
+</nav>
+
+<div class="card-box">
+
+<h3 class="mb-4 text-primary titulo">
+<i class="bi bi-person-plus-fill"></i> Registrar Alumno
+</h3>
+
+<form method="POST">
+{% csrf_token %}
+
+{% if form.errors %}
+<div class="alert alert-danger">
+<strong>Error:</strong> Verifica los datos del formulario
+</div>
+{% endif %}
+
+<div class="row g-3">
+
+<div class="col-md-4">
+<label class="form-label">Número de Control</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-hash"></i></span>
+<input type="text" name="numControl" class="form-control"
+value="{{ form.numControl.value|default:'' }}" required>
+</div>
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Nombre</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person"></i></span>
+<input type="text" name="Nombre" class="form-control"
+value="{{ form.Nombre.value|default:'' }}" required>
+</div>
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Primer Apellido</label>
+<input type="text" name="primerAp" class="form-control"
+value="{{ form.primerAp.value|default:'' }}" required>
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Segundo Apellido</label>
+<input type="text" name="segundoAp" class="form-control"
+value="{{ form.segundoAp.value|default:'' }}">
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Fecha de Nacimiento</label>
+<input type="date" name="fechaNac" class="form-control"
+value="{{ form.fechaNac.value|default:'' }}">
+</div>
+
+<div class="col-md-2">
+<label class="form-label">Semestre</label>
+<input type="number" name="semestre" class="form-control"
+value="{{ form.semestre.value|default:'' }}">
+</div>
+
+<div class="col-md-6">
+<label class="form-label">Carrera</label>
+<input type="text" name="carrera" class="form-control"
+value="{{ form.carrera.value|default:'' }}">
+</div>
+
+</div>
+
+<div class="mt-4 d-flex gap-3">
+<button type="submit" class="btn btn-success w-100">
+<i class="bi bi-save"></i> Guardar
+</button>
+
+<a href="{% url 'listar' %}" class="btn btn-secondary w-100">
+<i class="bi bi-x-circle"></i> Cancelar
+</a>
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>
