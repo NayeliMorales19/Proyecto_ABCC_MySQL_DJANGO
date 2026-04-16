@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Alumno
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,32 +6,32 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect
 
 # 🔹 LISTAR
 class ListarAlumnos(LoginRequiredMixin, ListView):
     model = Alumno
-    template_name = "alumnos/listar.html"
+    template_name = "alumnos/index.html"
 
 
-# 🔹 DETALLE (ARREGLADO)
+# 🔹 DETALLE
 class DetalleAlumno(LoginRequiredMixin, DetailView):
     model = Alumno
     template_name = "alumnos/detalle.html"
+    context_object_name = "alumno"
 
 
-# 🔹 CREAR (ARREGLADO)
+# 🔹 CREAR
 class CrearAlumno(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Alumno
     fields = "__all__"
-    template_name = "alumnos/nuevo.html"
+    template_name = "alumnos/crear.html"
     success_message = "Alumno AGREGADO con EXITO!!"
 
     def get_success_url(self):
         return reverse('listar')
 
 
-# 🔹 EDITAR (ARREGLADO)
+# 🔹 EDITAR
 class ActualizarAlumno(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Alumno
     fields = "__all__"
@@ -42,7 +42,7 @@ class ActualizarAlumno(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return reverse('listar')
 
 
-# 🔹 ELIMINAR (ARREGLADO)
+# 🔹 ELIMINAR
 class EliminarAlumno(LoginRequiredMixin, DeleteView):
     model = Alumno
     template_name = "alumnos/eliminar.html"
@@ -60,7 +60,7 @@ def inicio(request):
     return render(request, 'inicio.html')
 
 
-# 🔹 REGISTRO (NUEVO)
+# 🔹 REGISTRO
 def register(request):
     form = UserCreationForm(request.POST or None)
     if form.is_valid():

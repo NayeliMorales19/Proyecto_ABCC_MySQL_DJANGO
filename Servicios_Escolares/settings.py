@@ -139,6 +139,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-LOGIN_REDIRECT_URL = '/listar/'
-LOGOUT_REDIRECT_URL = '/login/'
+
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/alumnos/'
+LOGOUT_REDIRECT_URL = 'login'
