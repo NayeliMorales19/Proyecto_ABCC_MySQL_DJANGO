@@ -2,6 +2,10 @@ from django.contrib import admin
 from django.urls import path
 from Servicios_Escolares.escolares.views import *
 
+from django.contrib import admin
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     # INICIO (evita error 404 en /)
     path('', ListarAlumnos.as_view(
@@ -32,4 +36,11 @@ urlpatterns = [
 
     # ELIMINAR
     path('alumnos/eliminar/<int:pk>/', EliminarAlumno.as_view(), name='eliminar'),
+]
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

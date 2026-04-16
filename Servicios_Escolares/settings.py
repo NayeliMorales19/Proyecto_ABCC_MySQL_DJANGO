@@ -94,12 +94,12 @@ WSGI_APPLICATION = 'Servicios_Escolares.wsgi.application'
 #}
 
  
-import os
-import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
+    'default': dj_database_url.config(
+        default='postgresql://postgres.xwisgtqcqbsucyrykhhm:momM2uO5iYdgijXN@aws-1-us-west-2.pooler.supabase.com:6543/postgres',
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -139,4 +139,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'login'
